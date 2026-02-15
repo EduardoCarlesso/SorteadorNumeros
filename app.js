@@ -2,16 +2,24 @@ function sortear(){
     let qtdNumerosSorteados = parseInt(document.getElementById("quantidade").value);
     let numeroMinimo = parseInt(document.getElementById("de").value);
     let numeroMaximo = parseInt(document.getElementById("ate").value);
-    let controle = 0;
-    let NumeroSorteado;
-    let sorteados = [];
+    let numeroSorteado;
+    let sorteados =[];
+    let controle = 0
 
-    for(controle == 0; controle < qtdNumerosSorteados; controle++){
+    for(i = 0; i < qtdNumerosSorteados; i++){
+        numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);
 
-        NumeroSorteado = parseInt(Math.random() * numeroMaximo + 1);    // utilizar hashmap para ver repetição de numeros   
-        sorteados.push(NumeroSorteado);
+        while(sorteados.includes(numeroSorteado)){
+            numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);        
+        }
+
+        sorteados.push(numeroSorteado);
     }
-    alert(sorteados);
-    let exibirSorteio = document.getElementById("resultado");
-    exibirSorteio.value.includes(sorteados);
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = "Números sorteados: " + sorteados;
+
+}
+
+function sorteiaNumeros( min, max){
+    return sorteio = parseInt(Math.random() * ((max+1) - min) + min);   
 }
