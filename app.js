@@ -12,12 +12,9 @@ function sortear(){
             while(sorteados.includes(numeroSorteado)){
                 numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);        
             }
-
             sorteados.push(numeroSorteado);
         }
-        let resultado = document.getElementById("resultado");
-        resultado.innerHTML = "Números sorteados: " + sorteados;
-        habilitarBotaoReinicio();
+        exibirSorteados(sorteados);
     }
 }
 
@@ -38,6 +35,12 @@ function sorteiaNumeros( min, max){
     return sorteio = parseInt(Math.random() * ((max+1) - min) + min);   
 }
 
+function exibirSorteados(sorteados){
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = "Números sorteados: " + sorteados;        
+    habilitarBotaoReinicio();
+}
+
 function habilitarBotaoReinicio(){
     let botao = document.getElementById("btn-reiniciar");
     if(botao.classList.contains("container__botao-desabilitado")){
@@ -52,10 +55,9 @@ function habilitarBotaoReinicio(){
 function reiniciar(){
     let botao = document.getElementById("btn-reiniciar");
     if(botao.classList.contains("container__botao")){ 
-        let qtdNumerosSorteados = document.getElementById("quantidade").value = "";
-        let numeroMinimo = document.getElementById("de").value = "";
-        let numeroMaximo = document.getElementById("ate").value = "";
-        let resultado = document.getElementById("resultado");
-        resultado.innerHTML = "";
+        document.getElementById("quantidade").value = "";
+        document.getElementById("de").value = "";
+        document.getElementById("ate").value = "";
+        document.getElementById("resultado").value = "";
     }
 }
