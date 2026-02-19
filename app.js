@@ -4,18 +4,34 @@ function sortear(){
     let numeroMaximo = parseInt(document.getElementById("ate").value);
     let numeroSorteado;
     let sorteados =[];
-    for(i = 0; i < qtdNumerosSorteados; i++){
-        numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);
+    let validade = logicaSorteio(numeroMinimo, numeroMaximo, qtdNumerosSorteados);
+    if(validade){
+        for(i = 0; i < qtdNumerosSorteados; i++){
+            numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);
 
-        while(sorteados.includes(numeroSorteado)){
-            numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);        
+            while(sorteados.includes(numeroSorteado)){
+                numeroSorteado = sorteiaNumeros(numeroMinimo, numeroMaximo);        
+            }
+
+            sorteados.push(numeroSorteado);
         }
-
-        sorteados.push(numeroSorteado);
+        let resultado = document.getElementById("resultado");
+        resultado.innerHTML = "Números sorteados: " + sorteados;
+        habilitarBotaoReinicio();
     }
-    let resultado = document.getElementById("resultado");
-    resultado.innerHTML = "Números sorteados: " + sorteados;
-    habilitarBotaoReinicio();
+}
+
+function logicaSorteio(min, max, qtdNumerosSorteados){
+    let intervalo = (max - min) + 1;
+    if(min > max){
+        alert("Número mínimo deve ser menor ou igual ao maximo");
+        return false;
+    }
+    if(qtdNumerosSorteados > intervalo){
+        alert("Intervalo entre menor e maior valor deve ter quantidade mínima igual ao número de valores a ser sorteados");
+        return false;
+    }
+    return true;
 }
 
 function sorteiaNumeros( min, max){
@@ -39,5 +55,7 @@ function reiniciar(){
         let qtdNumerosSorteados = document.getElementById("quantidade").value = "";
         let numeroMinimo = document.getElementById("de").value = "";
         let numeroMaximo = document.getElementById("ate").value = "";
+        let resultado = document.getElementById("resultado");
+        resultado.innerHTML = "";
     }
 }
