@@ -54,7 +54,6 @@ function alteraStatusBotaoReiniciar() {
     }
 }
 
-
 function reiniciar() {
     document.getElementById("quantidade").value = "";
     document.getElementById("de").value = "";
